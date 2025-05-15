@@ -1,0 +1,27 @@
+<div class= "container my-3 p-3">
+  <h2>List Name: <%= @list.name  %></h2>
+</div>
+<%# show bookmarks (movies) %>
+<div class="container">
+  <h2>Movies</h2>
+  <% @list.bookmarks.each do |bookmark| %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+      <%= bookmark.movie.title %>
+    </div>
+    <p>Overview: <%=bookmark.movie.overview %></p>
+    <p>Rating: <%=bookmark.movie.rating %></p>
+    <p>comment: <%=bookmark.comment %></p>
+  <% end %>
+</div>
+<%# form to make bookmarks %>
+<%= link_to "Home", lists_path, class: 'btn btn-primary mx-3' %>
+<div class="container">
+  <h2>Make bookmarks</h2>
+  <p>Bookmark movies for this list!</p>
+  <%= simple_form_for [ @list, @bookmark ] do |f| %>
+    <%= f.input :comment %>
+    <%= f.association :movie, collection: @movies, prompt: 'Select Movie', label: false %>
+    <%= f.submit "Submit", class: 'btn btn-primary mt-3' %>
+  <% end %>
+</div>
+<%=  %>
