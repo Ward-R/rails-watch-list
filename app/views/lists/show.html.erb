@@ -1,28 +1,30 @@
 <!-- BACKGROUND IMAGE -->
-<div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
-  <%= @list.name %>
-</div>
-<%# show bookmarks (movies) %>
 <div class="container">
-  <h2>Movies</h2>
-  <% @list.bookmarks.each do |bookmark| %>
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
-      <%= bookmark.movie.title %>
-    </div>
-    <p>Overview: <%=bookmark.movie.overview %></p>
-    <p>Rating: <%=bookmark.movie.rating %></p>
-    <p>comment: <%=bookmark.comment %></p>
-  <% end %>
+  <div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
+    <%= @list.name %>
+  </div>
+  <%# show bookmarks (movies) %>
+  <div class="container m-3">
+    <h2>Movies</h2>
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+        <%= bookmark.movie.title %>
+      </div>
+      <p>Overview: <%=bookmark.movie.overview %></p>
+      <p>Rating: <%=bookmark.movie.rating %></p>
+      <p>comment: <%=bookmark.comment %></p>
+    <% end %>
+    <%= link_to "Home", lists_path, class: 'btn btn-primary' %>
+  </div>
+  <%# form to make bookmarks %>
+  <div class="container m-3">
+    <h2>Make bookmarks</h2>
+    <p>Bookmark movies for this list!</p>
+    <%= simple_form_for [ @list, @bookmark ] do |f| %>
+      <%= f.input :comment %>
+      <%= f.association :movie, collection: @movies, prompt: 'Select Movie', label: false %>
+      <%= f.submit "Submit", class: 'btn btn-primary mt-3' %>
+    <% end %>
+  </div>
+  <%# simpole form only needs f.association :movie, not all that other stuff i have. %>
 </div>
-<%# form to make bookmarks %>
-<%= link_to "Home", lists_path, class: 'btn btn-primary mx-3' %>
-<div class="container">
-  <h2>Make bookmarks</h2>
-  <p>Bookmark movies for this list!</p>
-  <%= simple_form_for [ @list, @bookmark ] do |f| %>
-    <%= f.input :comment %>
-    <%= f.association :movie, collection: @movies, prompt: 'Select Movie', label: false %>
-    <%= f.submit "Submit", class: 'btn btn-primary mt-3' %>
-  <% end %>
-</div>
-<%# simpole form only needs f.association :movie, not all that other stuff i have. %>
