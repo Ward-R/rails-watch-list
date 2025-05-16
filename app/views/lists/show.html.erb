@@ -1,6 +1,11 @@
-<div class= "container my-3 p-3">
-  <h2>List Name: <%= @list.name  %></h2>
+<%# <div class= "container my-3 p-3"> %>
+<%# <h2>List Name: <%= @list.name  %></h2>
+ %>
+<!-- BACKGROUND IMAGE -->
+<div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
+  <%= @list.name %>
 </div>
+<%# </div> %>
 <%# show bookmarks (movies) %>
 <div class="container">
   <h2>Movies</h2>
