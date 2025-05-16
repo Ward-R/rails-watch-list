@@ -1,8 +1,8 @@
+<div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
+  <%= @list.name %>
+</div>
 <!-- BACKGROUND IMAGE -->
-<div class="container">
-  <div class="item card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : image_path('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQDYau3Hs4-xw1i8jVSUY4BlF4FLmg8lQqg&usqp=CAU') %>)">
-    <%= @list.name %>
-  </div>
+<div class="container  ">
   <%# show bookmarks (movies) %>
   <div class="container m-3">
     <h2>Movies</h2>
@@ -10,9 +10,9 @@
       <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
         <%= bookmark.movie.title %>
       </div>
-      <p>Overview: <%=bookmark.movie.overview %></p>
-      <p>Rating: <%=bookmark.movie.rating %></p>
-      <p>comment: <%=bookmark.comment %></p>
+      <p><strong>Overview: </strong><%=bookmark.movie.overview %></p>
+      <p><strong>Rating: </strong><%=bookmark.movie.rating %></p>
+      <p><strong>comment: </strong><%=bookmark.comment %></p>
     <% end %>
     <%= link_to "Home", lists_path, class: 'btn btn-primary' %>
   </div>
