@@ -29,7 +29,7 @@ class ListsController < ApplicationController
 
   def list_params
     # Strong params -> white listing the attributes users can give us in the form
-    params.require(:list).permit(:name)
+    params.require(:list).permit(:name, :photo)
   end
 end
 
